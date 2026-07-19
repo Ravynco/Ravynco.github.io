@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ravynco.in | Made for the quiet storms</title>
     
+    <!-- Premium Editorial Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
     
     <style>
+        /* --- CORE PALETTE & TYPOGRAPHY --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --bg-maroon: #3E1010;
@@ -31,11 +33,12 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* --- STICKY NAV --- */
         nav {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            padding: 2rem;
+            padding: 1.5rem 2rem;
             background-color: var(--bg-maroon);
             border-bottom: 1px solid rgba(197, 160, 89, 0.2);
             position: sticky;
@@ -44,172 +47,135 @@
         }
         nav .logo {
             font-family: var(--font-display);
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             color: var(--gold);
             text-decoration: none;
             letter-spacing: 0.02em;
             cursor: pointer;
             font-style: italic;
         }
-
-        .hero {
-            text-align: center;
-            padding: 4rem 1.5rem;
-        }
-        .hero h1 {
-            font-family: var(--font-display);
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 400;
-            color: var(--gold);
-        }
-        .hero p {
-            margin-top: 1rem;
+        .cart-trigger {
+            background: none;
+            border: none;
+            color: var(--off-white);
+            font-family: var(--font-body);
             font-size: 1.2rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-
-        .bubbles-section {
-            padding: 3rem 2rem 5rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        .bubbles-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 3rem;
-            justify-items: center;
-        }
-        @media (max-width: 768px) {
-            .bubbles-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-        }
-
-        .bubble {
-            width: 100%;
-            max-width: 220px;
-            aspect-ratio: 1 / 1;
-            border-radius: 50%;
-            background-color: var(--dark-maroon);
+            cursor: pointer;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            text-decoration: none;
-            color: var(--off-white);
-            font-family: var(--font-display);
-            font-size: 1.8rem;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--gold);
+            gap: 0.5rem;
         }
-        .bubble::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0.3;
-            z-index: 1;
+        .cart-trigger:hover { color: var(--gold); }
+        .cart-count {
+            background-color: var(--gold);
+            color: var(--dark-maroon);
+            border-radius: 50%;
+            padding: 0.1rem 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
         }
+
+        /* --- HERO & TAGLINE --- */
+        .hero { text-align: center; padding: 4rem 1.5rem; }
+        .hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 400; color: var(--gold); }
+        .hero p { margin-top: 1rem; font-size: 1.2rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+        /* --- BUBBLES NAVIGATION --- */
+        .bubbles-section { padding: 3rem 2rem 5rem; max-width: 1000px; margin: 0 auto; }
+        .bubbles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; justify-items: center; }
+        @media (max-width: 768px) { .bubbles-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; } }
+        .bubble {
+            width: 100%; max-width: 220px; aspect-ratio: 1 / 1; border-radius: 50%;
+            background-color: var(--dark-maroon); display: flex; align-items: center; justify-content: center;
+            text-align: center; color: var(--off-white); font-family: var(--font-display); font-size: 1.8rem;
+            cursor: pointer; transition: all 0.4s ease; position: relative; overflow: hidden; border: 1px solid var(--gold);
+        }
+        .bubble::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0.3; z-index: 1; }
         .bubble span { position: relative; z-index: 2; font-style: italic; }
         .bubble:hover { transform: translateY(-5px); background-color: var(--gold); color: var(--dark-maroon); }
 
-        .page-view {
-            display: none;
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            min-height: 70vh;
-        }
-        .page-header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-        .back-btn {
-            background: none;
-            border: none;
-            color: var(--gold);
-            font-family: var(--font-body);
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            cursor: pointer;
-            margin-bottom: 1.5rem;
-            letter-spacing: 0.1em;
-        }
-        
-        .page-title {
-            font-family: var(--font-display);
-            font-size: 3.5rem;
-            color: var(--off-white);
-            font-style: italic;
-        }
+        /* --- PAGES LAYOUT --- */
+        .page-view { display: none; padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; min-height: 70vh; }
+        .page-header { display: flex; flex-direction: column; align-items: center; margin-bottom: 3rem; text-align: center; }
+        .back-btn { background: none; border: none; color: var(--gold); font-family: var(--font-body); font-size: 1.1rem; text-transform: uppercase; cursor: pointer; margin-bottom: 1.5rem; }
+        .page-title { font-family: var(--font-display); font-size: 3.5rem; color: var(--off-white); font-style: italic; }
 
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-        .product-card {
-            background: var(--dark-maroon);
-            border: 1px solid rgba(197, 160, 89, 0.3);
-            display: flex;
-            flex-direction: column;
-        }
+        /* --- PRODUCTS GRID & ACTIONS --- */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
+        .product-card { background: var(--dark-maroon); border: 1px solid rgba(197, 160, 89, 0.3); display: flex; flex-direction: column; }
         .product-img { background-color: #111; width: 100%; aspect-ratio: 4/5; overflow: hidden; }
         .product-img img { width: 100%; height: 100%; object-fit: cover; }
         .product-info { padding: 1.5rem; text-align: center; }
         .product-name { font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 0.5rem; }
         .product-price { color: var(--gold); font-size: 1.3rem; margin-bottom: 1.2rem; font-weight: 600; }
         
-        .buy-btn {
-            display: inline-block;
-            background-color: var(--gold);
-            color: var(--dark-maroon);
-            padding: 0.8rem 1.5rem;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 0.1em;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            font-family: var(--font-body);
-            font-weight: 600;
+        /* Dual Button Frame Setup */
+        .action-frame { display: flex; flex-direction: column; gap: 0.5rem; }
+        .btn {
+            display: inline-block; padding: 0.8rem 1.5rem; text-transform: uppercase;
+            font-size: 0.9rem; letter-spacing: 0.1em; border: none; cursor: pointer;
+            width: 100%; font-family: var(--font-body); font-weight: 600; transition: all 0.3s;
         }
+        .btn-gold { background-color: var(--gold); color: var(--dark-maroon); }
+        .btn-gold:hover { background-color: var(--off-white); }
+        .btn-outline { background-color: transparent; color: var(--off-white); border: 1px solid var(--gold); }
+        .btn-outline:hover { background-color: rgba(197, 160, 89, 0.1); }
 
-        /* --- SECURE DATABASE EMBED CONTAINER --- */
-        .secure-form-frame {
-            width: 100%;
-            max-width: 650px;
-            height: 600px;
-            border: 1px solid var(--gold);
-            background: white;
-            margin: 0 auto;
+        /* --- SLIDING CART DRAWER SYSTEM --- */
+        .cart-drawer {
+            position: fixed; top: 0; right: -400px; width: 100%; max-width: 400px; height: 100vh;
+            background-color: var(--dark-maroon); border-left: 1px solid var(--gold); z-index: 1000;
+            padding: 2rem; display: flex; flex-direction: column; transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: -10px 0 30px rgba(0,0,0,0.3);
         }
+        .cart-drawer.open { right: 0; }
+        .cart-drawer-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(197, 160, 89, 0.2); padding-bottom: 1rem; margin-bottom: 1.5rem; }
+        .cart-drawer-header h3 { font-family: var(--font-display); font-size: 2rem; font-style: italic; }
+        .close-cart { background: none; border: none; color: var(--gold); font-size: 2rem; cursor: pointer; }
+        .cart-items-list { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid rgba(249, 246, 240, 0.1); }
+        .remove-item { background: none; border: none; color: #ff6b6b; cursor: pointer; font-size: 0.9rem; text-transform: uppercase; margin-top: 0.25rem; }
+        .cart-footer { padding-top: 1.5rem; border-top: 1px solid rgba(197, 160, 89, 0.2); }
+        .cart-total { display: flex; justify-content: space-between; font-size: 1.3rem; margin-bottom: 1.5rem; font-family: var(--font-display); color: var(--gold); }
 
+        /* --- IFRAME AND CHECKOUT VIEWS --- */
+        .secure-form-frame { width: 100%; max-width: 650px; height: 600px; border: 1px solid var(--gold); background: white; margin: 0 auto; }
         .qr-container { text-align: center; max-width: 400px; margin: 0 auto; }
         .qr-box { background: #fff; padding: 1rem; margin: 2rem auto; width: 250px; height: 250px; }
         .qr-box img { width: 100%; height: 100%; object-fit: contain; }
 
-        footer {
-            background-color: var(--dark-maroon);
-            color: var(--gold);
-            text-align: center;
-            padding: 3rem 1rem;
-            font-size: 1rem;
-            border-top: 1px solid rgba(197, 160, 89, 0.3);
-        }
+        footer { background-color: var(--dark-maroon); color: var(--gold); text-align: center; padding: 3rem 1rem; font-size: 1rem; border-top: 1px solid rgba(197, 160, 89, 0.3); }
     </style>
 </head>
 <body>
 
-    <nav><a class="logo" onclick="goHome()">ravynco.in</a></nav>
+    <!-- TOP STICKY NAVIGATION -->
+    <nav>
+        <a class="logo" onclick="goHome()">ravynco.in</a>
+        <button class="cart-trigger" onclick="toggleCart(true)">
+            Cart <span class="cart-count" id="nav-cart-count">0</span>
+        </button>
+    </nav>
 
-    <!-- HOME VIEW -->
+    <!-- SLIDING CART DRAWER -->
+    <div id="cartDrawer" class="cart-drawer">
+        <div class="cart-drawer-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart" onclick="toggleCart(false)">×</button>
+        </div>
+        <div class="cart-items-list" id="cartItemsContainer">
+            <!-- Dynamically injected cart rows go here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotalAmount">₹0</span>
+            </div>
+            <button class="btn btn-gold" onclick="openCartCheckout()">Checkout Securely</button>
+        </div>
+    </div>
+
+    <!-- HOME INTERACTIVE VIEW -->
     <div id="home-view">
         <header class="hero">
             <h1>Made for the quiet storms</h1>
@@ -228,79 +194,157 @@
         </section>
     </div>
 
-    <!-- PRODUCTS VIEW -->
+    <!-- PRODUCTS BROWSE VIEW -->
     <div id="category-view" class="page-view">
         <div class="page-header">
             <button class="back-btn" onclick="goHome()">← Back to Categories</button>
             <h2 class="page-title" id="dynamic-category-title">Category</h2>
         </div>
         <div class="product-grid">
+            
+            <!-- Sample Jewelry Card Structure -->
             <div class="product-card">
                 <div class="product-img"><img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=600" alt="Jewelry"></div>
                 <div class="product-info">
                     <h3 class="product-name">The Ethereal Piece</h3>
                     <div class="product-price">₹1,200</div>
-                    <button class="buy-btn" onclick="openCheckout('The Ethereal Piece', '₹1,200')">Buy Now</button>
+                    <div class="action-frame">
+                        <button class="btn btn-gold" onclick="triggerBuyNow('The Ethereal Piece', 1200)">Buy Now</button>
+                        <button class="btn btn-outline" onclick="addToCart('The Ethereal Piece', 1200)">Add to Cart</button>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 
-    <!-- SECURE ORDER FORM VIEW (Only visible to you) -->
+    <!-- SECURE ORDER ADDRESS DATABASE ENTRY -->
     <div id="checkout-view" class="page-view">
         <div class="page-header">
             <h2 class="page-title">Secure Checkout</h2>
-            <p style="color: var(--gold); margin-top: 0.5rem;" id="checkout-product-name"></p>
+            <p style="color: var(--gold); margin-top: 0.5rem;" id="checkout-items-summary"></p>
         </div>
-        
-        <!-- SECURE FORM SYSTEM -->
         <div class="secure-form-frame">
-            <!-- PASTE YOUR PRIVATE GOOGLE FORM EMBED LINK BELOW INSIDE THE SRC -->
+            <!-- PASTE YOUR SECURE GOOGLE FORMS LINK HERE -->
             <iframe id="orderFormFrame" src="https://docs.google.com/forms/d/e/1FAIpQLSfD5l6e_YOUR_FORM_ID_HERE/viewform?embedded=true" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0">Loading secure checkout database...</iframe>
         </div>
-        
         <div style="text-align:center; margin-top: 2rem;">
-            <button class="buy-btn" style="max-width:300px;" onclick="goToPayment()">Click Here After Submitting Address</button>
+            <button class="btn btn-gold" style="max-width:300px;" onclick="goToPayment()">Click After Submitting Address</button>
         </div>
     </div>
 
-    <!-- PRIVATE QR CODE INSTANT VIEW -->
+    <!-- SECURE PRIVACY PAYMENT FRAME -->
     <div id="qr-view" class="page-view">
         <div class="page-header"><h2 class="page-title">Final Step: Payment</h2></div>
         <div class="qr-container">
-            <p>Scan your payment here. Your delivery address has been saved securely to our database.</p>
+            <p>Scan to pay via any UPI application. Your order structural breakdown and tracking parameters have been locked in.</p>
             <div class="qr-box"><img src="my-qr-code.jpg" alt="Payment QR"></div>
-            <button class="buy-btn" onclick="goHome()">Finish Order</button>
+            <button class="btn btn-gold" onclick="clearCartAndFinish()">Finish Order</button>
         </div>
     </div>
 
-    <!-- CUSTOMS FORM VIEW -->
+    <!-- PRIVATE SECURE CUSTOMS REQUEST DATABASE -->
     <div id="customs-view" class="page-view">
         <div class="page-header">
             <button class="back-btn" onclick="goHome()">← Back Home</button>
             <h2 class="page-title">Custom Request</h2>
         </div>
         <div class="secure-form-frame">
-            <!-- PASTE YOUR SECOND PRIVATE GOOGLE FORM EMBED LINK FOR CUSTOM VISIONS HERE -->
+            <!-- PASTE YOUR PRIVATIZED CUSTOM FORM IFRAME EMBED LINK HERE -->
             <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfD5l6e_YOUR_CUSTOM_FORM_ID_HERE/viewform?embedded=true" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0">Loading form...</iframe>
         </div>
     </div>
 
     <footer>© 2026 ravynco.in | All Rights Reserved</footer>
 
+    <!-- INTERACTIVE ENGINE LOGIC -->
     <script>
+        // Store tracking fields
+        let cartArray = [];
         const views = [document.getElementById('home-view'), document.getElementById('category-view'), document.getElementById('checkout-view'), document.getElementById('qr-view'), document.getElementById('customs-view')];
-        function hideAll() { views.forEach(v => v.style.display = 'none'); window.scrollTo(0, 0); }
+        const drawer = document.getElementById('cartDrawer');
+
+        function hideAll() { views.forEach(v => v.style.display = 'none'); toggleCart(false); window.scrollTo(0, 0); }
         function goHome() { hideAll(); views[0].style.display = 'block'; }
         function openCategory(cat) { hideAll(); views[1].style.display = 'block'; document.getElementById('dynamic-category-title').innerText = cat; }
         function openCustoms() { hideAll(); views[4].style.display = 'block'; }
-        
-        function openCheckout(name, price) {
-            document.getElementById('checkout-product-name').innerText = `Item: ${name} (${price})`;
+        function goToPayment() { hideAll(); views[3].style.display = 'block'; }
+
+        // Cart Visibility Control
+        function toggleCart(openState) {
+            if (openState) drawer.classList.add('open');
+            else drawer.classList.remove('open');
+        }
+
+        // Add item to shopping array
+        function addToCart(name, price) {
+            cartArray.push({ name: name, price: price });
+            updateCartUI();
+            toggleCart(true); // Automatically show side panel like premium retail sites
+        }
+
+        // Instantly bypass cart array and checkout one item
+        function triggerBuyNow(name, price) {
+            document.getElementById('checkout-items-summary').innerText = `Buying: ${name} (₹${price})`;
             hideAll();
             views[2].style.display = 'block';
         }
-        function goToPayment() { hideAll(); views[3].style.display = 'block'; }
+
+        // Remove row from shopping array
+        function removeCartItem(index) {
+            cartArray.splice(index, 1);
+            updateCartUI();
+        }
+
+        // Synchronize Interface Display States
+        function updateCartUI() {
+            const countEl = document.getElementById('nav-cart-count');
+            const container = document.getElementById('cartItemsContainer');
+            const totalEl = document.getElementById('cartTotalAmount');
+            
+            countEl.innerText = cartArray.length;
+            container.innerHTML = "";
+            
+            let currentSum = 0;
+            
+            if (cartArray.length === 0) {
+                container.innerHTML = `<p style="text-align:center; opacity:0.5; margin-top:2rem;">Your cart is empty.</p>`;
+            } else {
+                cartArray.forEach((item, index) => {
+                    currentSum += item.price;
+                    container.innerHTML += `
+                        <div class="cart-item">
+                            <div>
+                                <h4 style="font-family:var(--font-display);">${item.name}</h4>
+                                <span style="color:var(--gold)">₹${item.price}</span>
+                            </div>
+                            <button class="remove-item" onclick="removeCartItem(${index})">Remove</button>
+                        </div>
+                    `;
+                });
+            }
+            totalEl.innerText = "₹" + currentSum;
+        }
+
+        // Handle Checkout click from inside Cart Drawer
+        function openCartCheckout() {
+            if (cartArray.length === 0) {
+                alert("Your cart is empty!");
+                return;
+            }
+            let summaryNames = cartArray.map(i => i.name).join(", ");
+            let totalCost = cartArray.reduce((acc, current) => acc + current.price, 0);
+            
+            document.getElementById('checkout-items-summary').innerText = `Cart Selection: ${summaryNames} (Total: ₹${totalCost})`;
+            hideAll();
+            views[2].style.display = 'block';
+        }
+
+        function clearCartAndFinish() {
+            cartArray = [];
+            updateCartUI();
+            goHome();
+        }
     </script>
 </body>
 </html>
