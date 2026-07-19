@@ -5,77 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ravynco.in | Made for the quiet storms</title>
     
-    <!-- Premium Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
     
     <style>
-        /* --- COLOR PALETTE & RESET --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
+            --bg-maroon: #3E1010;
             --off-white: #F9F6F0;
-            --choc-brown: #3D2314;
-            --dark-maroon: #4A1515;
             --gold: #C5A059;
+            --dark-maroon: #2A0909;
             --black: #111111;
             
-            --font-serif: 'Instrument Serif', serif;
-            --font-sans: 'DM Sans', sans-serif;
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Cormorant Garamond', serif;
         }
 
         body {
-            background-color: var(--off-white);
-            color: var(--choc-brown);
-            font-family: var(--font-sans);
+            background-color: var(--bg-maroon);
+            color: var(--off-white);
+            font-family: var(--font-body);
+            font-size: 1.1rem;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- NAVIGATION --- */
         nav {
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 2rem;
-            background-color: var(--off-white);
-            border-bottom: 1px solid rgba(61, 35, 20, 0.1);
+            background-color: var(--bg-maroon);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
             position: sticky;
             top: 0;
             z-index: 100;
         }
         nav .logo {
-            font-family: var(--font-serif);
-            font-size: 2.5rem;
-            color: var(--choc-brown);
+            font-family: var(--font-display);
+            font-size: 2.8rem;
+            color: var(--gold);
             text-decoration: none;
             letter-spacing: 0.02em;
             cursor: pointer;
+            font-style: italic;
         }
 
-        /* --- HERO SECTION --- */
         .hero {
             text-align: center;
             padding: 4rem 1.5rem;
-            background-color: var(--dark-maroon);
-            color: var(--off-white);
         }
         .hero h1 {
-            font-family: var(--font-serif);
+            font-family: var(--font-display);
             font-size: clamp(2.5rem, 6vw, 4rem);
             font-weight: 400;
             color: var(--gold);
         }
         .hero p {
             margin-top: 1rem;
-            font-size: 1rem;
+            font-size: 1.2rem;
             letter-spacing: 0.1em;
             text-transform: uppercase;
         }
 
-        /* --- BUBBLES GRID (HOME PAGE) --- */
         .bubbles-section {
-            padding: 5rem 2rem;
+            padding: 3rem 2rem 5rem;
             max-width: 1000px;
             margin: 0 auto;
         }
@@ -85,7 +80,6 @@
             gap: 3rem;
             justify-items: center;
         }
-        /* Mobile adjustment for bubbles */
         @media (max-width: 768px) {
             .bubbles-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
         }
@@ -95,51 +89,35 @@
             max-width: 220px;
             aspect-ratio: 1 / 1;
             border-radius: 50%;
-            background-color: var(--choc-brown);
+            background-color: var(--dark-maroon);
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             text-decoration: none;
             color: var(--off-white);
-            font-family: var(--font-serif);
-            font-size: 2rem;
+            font-family: var(--font-display);
+            font-size: 1.8rem;
             cursor: pointer;
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
-            border: 2px solid transparent;
+            border: 1px solid var(--gold);
         }
-        
-        /* Optional: Add background images to your bubbles by replacing the URL */
         .bubble::before {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             background-size: cover;
             background-position: center;
-            opacity: 0.4;
-            transition: opacity 0.4s ease;
+            opacity: 0.3;
             z-index: 1;
         }
-        
-        .bubble span {
-            position: relative;
-            z-index: 2;
-        }
+        .bubble span { position: relative; z-index: 2; font-style: italic; }
+        .bubble:hover { transform: translateY(-5px); background-color: var(--gold); color: var(--dark-maroon); }
 
-        .bubble:hover {
-            border-color: var(--gold);
-            transform: translateY(-5px);
-            background-color: var(--black);
-        }
-        .bubble:hover::before {
-            opacity: 0.2;
-        }
-
-        /* --- CATEGORY/PRODUCT PAGE --- */
         .page-view {
-            display: none; /* Hidden by default, toggled via JS */
+            display: none;
             padding: 4rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
@@ -155,21 +133,20 @@
         .back-btn {
             background: none;
             border: none;
-            color: var(--dark-maroon);
-            font-family: var(--font-sans);
-            font-size: 0.9rem;
+            color: var(--gold);
+            font-family: var(--font-body);
+            font-size: 1.1rem;
             text-transform: uppercase;
             cursor: pointer;
             margin-bottom: 1.5rem;
             letter-spacing: 0.1em;
-            font-weight: 500;
         }
-        .back-btn:hover { color: var(--gold); }
         
-        .category-title {
-            font-family: var(--font-serif);
+        .page-title {
+            font-family: var(--font-display);
             font-size: 3.5rem;
-            color: var(--choc-brown);
+            color: var(--off-white);
+            font-style: italic;
         }
 
         .product-grid {
@@ -177,120 +154,62 @@
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 2rem;
         }
-        
         .product-card {
-            background: var(--off-white);
-            border: 1px solid rgba(61, 35, 20, 0.1);
-            text-decoration: none;
-            color: inherit;
+            background: var(--dark-maroon);
+            border: 1px solid rgba(197, 160, 89, 0.3);
             display: flex;
             flex-direction: column;
-            transition: transform 0.3s ease;
         }
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-        }
-        .product-img {
-            background-color: var(--black);
-            width: 100%;
-            aspect-ratio: 4/5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-        .product-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .product-info {
-            padding: 1.5rem;
-            text-align: center;
-        }
-        .product-name {
-            font-family: var(--font-serif);
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-        .product-price {
-            font-family: var(--font-sans);
-            color: var(--dark-maroon);
-            font-weight: 500;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
+        .product-img { background-color: #111; width: 100%; aspect-ratio: 4/5; overflow: hidden; }
+        .product-img img { width: 100%; height: 100%; object-fit: cover; }
+        .product-info { padding: 1.5rem; text-align: center; }
+        .product-name { font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .product-price { color: var(--gold); font-size: 1.3rem; margin-bottom: 1.2rem; font-weight: 600; }
+        
         .buy-btn {
             display: inline-block;
-            background-color: var(--choc-brown);
-            color: var(--gold);
+            background-color: var(--gold);
+            color: var(--dark-maroon);
             padding: 0.8rem 1.5rem;
             text-transform: uppercase;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             letter-spacing: 0.1em;
             border: none;
             cursor: pointer;
             width: 100%;
+            font-family: var(--font-body);
+            font-weight: 600;
         }
 
-        /* --- CUSTOMS FORM PAGE --- */
-        .custom-form-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 3rem;
-            border: 1px solid var(--gold);
-        }
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            color: var(--dark-maroon);
-        }
-        .form-group input, .form-group textarea {
+        /* --- SECURE DATABASE EMBED CONTAINER --- */
+        .secure-form-frame {
             width: 100%;
-            padding: 1rem;
-            border: 1px solid rgba(61, 35, 20, 0.2);
-            background-color: var(--off-white);
-            font-family: var(--font-sans);
-            outline: none;
-        }
-        .form-group input:focus, .form-group textarea:focus {
-            border-color: var(--gold);
-        }
-        .upload-note {
-            font-size: 0.8rem;
-            color: var(--choc-brown);
-            margin-top: 0.5rem;
-            font-style: italic;
+            max-width: 650px;
+            height: 600px;
+            border: 1px solid var(--gold);
+            background: white;
+            margin: 0 auto;
         }
 
-        /* --- FOOTER --- */
+        .qr-container { text-align: center; max-width: 400px; margin: 0 auto; }
+        .qr-box { background: #fff; padding: 1rem; margin: 2rem auto; width: 250px; height: 250px; }
+        .qr-box img { width: 100%; height: 100%; object-fit: contain; }
+
         footer {
-            background-color: var(--black);
-            color: var(--off-white);
+            background-color: var(--dark-maroon);
+            color: var(--gold);
             text-align: center;
             padding: 3rem 1rem;
-            font-size: 0.8rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            border-top: 3px solid var(--dark-maroon);
+            font-size: 1rem;
+            border-top: 1px solid rgba(197, 160, 89, 0.3);
         }
     </style>
 </head>
 <body>
 
-    <!-- TOP NAV -->
-    <nav>
-        <a class="logo" onclick="goHome()">ravynco.in</a>
-    </nav>
+    <nav><a class="logo" onclick="goHome()">ravynco.in</a></nav>
 
-    <!-- ==================== HOME VIEW ==================== -->
+    <!-- HOME VIEW -->
     <div id="home-view">
         <header class="hero">
             <h1>Made for the quiet storms</h1>
@@ -299,144 +218,89 @@
 
         <section class="bubbles-section">
             <div class="bubbles-grid">
-                <!-- You can add background images to bubbles in the inline style -->
-                <div class="bubble" onclick="openCategory('Necklaces')" style="background-image: url('https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=400');">
-                    <span>Necklaces</span>
-                </div>
-                <div class="bubble" onclick="openCategory('Rings')" style="background-image: url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=400');">
-                    <span>Rings</span>
-                </div>
-                <div class="bubble" onclick="openCategory('Earrings')" style="background-image: url('https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&q=80&w=400');">
-                    <span>Earrings</span>
-                </div>
-                <div class="bubble" onclick="openCategory('Phone Charms')">
-                    <span>Phone<br>Charms</span>
-                </div>
-                <div class="bubble" onclick="openCategory('Hair Sticks')">
-                    <span>Hair<br>Sticks</span>
-                </div>
-                <div class="bubble" onclick="openCustoms()" style="background-color: var(--dark-maroon); border-color: var(--gold);">
-                    <span style="color: var(--gold);">Customs</span>
-                </div>
+                <div class="bubble" onclick="openCategory('Necklaces')" style="background-image: url('necklaces.jpg');"><span>Necklaces</span></div>
+                <div class="bubble" onclick="openCategory('Rings')" style="background-image: url('rings.jpg');"><span>Rings</span></div>
+                <div class="bubble" onclick="openCategory('Earrings')" style="background-image: url('earrings.jpg');"><span>Earrings</span></div>
+                <div class="bubble" onclick="openCategory('Phone Charms')"><span>Phone Charms</span></div>
+                <div class="bubble" onclick="openCategory('Hair Sticks')"><span>Hair Sticks</span></div>
+                <div class="bubble" onclick="openCustoms()"><span>Customs</span></div>
             </div>
         </section>
     </div>
 
-    <!-- ==================== CATEGORY / PRODUCTS VIEW ==================== -->
+    <!-- PRODUCTS VIEW -->
     <div id="category-view" class="page-view">
         <div class="page-header">
             <button class="back-btn" onclick="goHome()">← Back to Categories</button>
-            <h2 class="category-title" id="dynamic-category-title">Category</h2>
+            <h2 class="page-title" id="dynamic-category-title">Category</h2>
         </div>
-
-        <!-- PRODUCT GRID -->
-        <div class="product-grid" id="product-display-area">
-            
-            <!-- Sample Product Code (You will copy and paste this block for each product) -->
-            <!-- Note: Replace 'YOURUPIID@okaxis' with your actual UPI -->
-            <a href="upi://pay?pa=YOURUPIID@okaxis&pn=ravynco&am=1200&cu=INR" class="product-card">
-                <div class="product-img">
-                    <!-- Put your image link here -->
-                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=600" alt="Product Image">
-                </div>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-img"><img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=600" alt="Jewelry"></div>
                 <div class="product-info">
-                    <h3 class="product-name">The Example Piece</h3>
+                    <h3 class="product-name">The Ethereal Piece</h3>
                     <div class="product-price">₹1,200</div>
-                    <button class="buy-btn">Pay via UPI</button>
+                    <button class="buy-btn" onclick="openCheckout('The Ethereal Piece', '₹1,200')">Buy Now</button>
                 </div>
-            </a>
-            
-            <!-- Add more products here inside this grid... -->
-            
+            </div>
         </div>
     </div>
 
-    <!-- ==================== CUSTOMS FORM VIEW ==================== -->
+    <!-- SECURE ORDER FORM VIEW (Only visible to you) -->
+    <div id="checkout-view" class="page-view">
+        <div class="page-header">
+            <h2 class="page-title">Secure Checkout</h2>
+            <p style="color: var(--gold); margin-top: 0.5rem;" id="checkout-product-name"></p>
+        </div>
+        
+        <!-- SECURE FORM SYSTEM -->
+        <div class="secure-form-frame">
+            <!-- PASTE YOUR PRIVATE GOOGLE FORM EMBED LINK BELOW INSIDE THE SRC -->
+            <iframe id="orderFormFrame" src="https://docs.google.com/forms/d/e/1FAIpQLSfD5l6e_YOUR_FORM_ID_HERE/viewform?embedded=true" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0">Loading secure checkout database...</iframe>
+        </div>
+        
+        <div style="text-align:center; margin-top: 2rem;">
+            <button class="buy-btn" style="max-width:300px;" onclick="goToPayment()">Click Here After Submitting Address</button>
+        </div>
+    </div>
+
+    <!-- PRIVATE QR CODE INSTANT VIEW -->
+    <div id="qr-view" class="page-view">
+        <div class="page-header"><h2 class="page-title">Final Step: Payment</h2></div>
+        <div class="qr-container">
+            <p>Scan your payment here. Your delivery address has been saved securely to our database.</p>
+            <div class="qr-box"><img src="my-qr-code.jpg" alt="Payment QR"></div>
+            <button class="buy-btn" onclick="goHome()">Finish Order</button>
+        </div>
+    </div>
+
+    <!-- CUSTOMS FORM VIEW -->
     <div id="customs-view" class="page-view">
         <div class="page-header">
             <button class="back-btn" onclick="goHome()">← Back Home</button>
-            <h2 class="category-title">Custom Order Request</h2>
+            <h2 class="page-title">Custom Request</h2>
         </div>
-        
-        <div class="custom-form-container">
-            <div class="form-group">
-                <label>Your Name</label>
-                <input type="text" id="cust-name" placeholder="Enter your name">
-            </div>
-            <div class="form-group">
-                <label>What are you envisioning?</label>
-                <textarea id="cust-desc" rows="5" placeholder="Describe the piece, the colors, and the vibe..."></textarea>
-            </div>
-            <div class="form-group">
-                <label>Inspiration Picture</label>
-                <div class="upload-note">
-                    Because this is a secure direct-to-artist connection, please click submit below. It will open a WhatsApp chat with me—<strong>just attach your inspo picture directly in the chat!</strong>
-                </div>
-            </div>
-            <!-- Replace '919876543210' with your actual WhatsApp phone number including country code -->
-            <button class="buy-btn" onclick="sendCustomWhatsApp('919876543210')">Send Request to WhatsApp</button>
+        <div class="secure-form-frame">
+            <!-- PASTE YOUR SECOND PRIVATE GOOGLE FORM EMBED LINK FOR CUSTOM VISIONS HERE -->
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfD5l6e_YOUR_CUSTOM_FORM_ID_HERE/viewform?embedded=true" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0">Loading form...</iframe>
         </div>
     </div>
 
-    <!-- FOOTER -->
-    <footer>
-        © 2026 ravynco.in | All Rights Reserved
-    </footer>
+    <footer>© 2026 ravynco.in | All Rights Reserved</footer>
 
-    <!-- ==================== LOGIC (DO NOT REMOVE) ==================== -->
     <script>
-        // These variables grab the different sections of the page
-        const homeView = document.getElementById('home-view');
-        const categoryView = document.getElementById('category-view');
-        const customsView = document.getElementById('customs-view');
-        const categoryTitle = document.getElementById('dynamic-category-title');
-
-        // Function to go back to the bubbles homepage
-        function goHome() {
-            homeView.style.display = 'block';
-            categoryView.style.display = 'none';
-            customsView.style.display = 'none';
-            window.scrollTo(0, 0);
+        const views = [document.getElementById('home-view'), document.getElementById('category-view'), document.getElementById('checkout-view'), document.getElementById('qr-view'), document.getElementById('customs-view')];
+        function hideAll() { views.forEach(v => v.style.display = 'none'); window.scrollTo(0, 0); }
+        function goHome() { hideAll(); views[0].style.display = 'block'; }
+        function openCategory(cat) { hideAll(); views[1].style.display = 'block'; document.getElementById('dynamic-category-title').innerText = cat; }
+        function openCustoms() { hideAll(); views[4].style.display = 'block'; }
+        
+        function openCheckout(name, price) {
+            document.getElementById('checkout-product-name').innerText = `Item: ${name} (${price})`;
+            hideAll();
+            views[2].style.display = 'block';
         }
-
-        // Function to open a specific category
-        function openCategory(categoryName) {
-            homeView.style.display = 'none';
-            customsView.style.display = 'none';
-            categoryView.style.display = 'block';
-            categoryTitle.innerText = categoryName;
-            window.scrollTo(0, 0);
-            
-            /* 
-               NOTE: Right now, this shows the same sample products for every category. 
-               In the future, you can write simple code here to show/hide specific 
-               products based on the categoryName clicked.
-            */
-        }
-
-        // Function to open the customs form
-        function openCustoms() {
-            homeView.style.display = 'none';
-            categoryView.style.display = 'none';
-            customsView.style.display = 'block';
-            window.scrollTo(0, 0);
-        }
-
-        // Function to format the form data and open WhatsApp
-        function sendCustomWhatsApp(phoneNumber) {
-            const name = document.getElementById('cust-name').value;
-            const desc = document.getElementById('cust-desc').value;
-            
-            if (!name || !desc) {
-                alert("Please fill in your name and description!");
-                return;
-            }
-
-            const message = `Hi Ravynco! I'd like to request a custom piece.%0A%0A*Name:* ${name}%0A*Vision:* ${desc}%0A%0A(I will attach my inspo picture to this chat now!)`;
-            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
-            
-            window.open(whatsappUrl, '_blank');
-        }
+        function goToPayment() { hideAll(); views[3].style.display = 'block'; }
     </script>
 </body>
 </html>
