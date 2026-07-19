@@ -215,13 +215,13 @@
 
         <section class="bubbles-section">
             <div class="bubbles-grid">
-                <div class="bubble" onclick="openCategory('Necklaces')" style="background-image: url('necklaces.jpg');"><span>Necklaces</span></div>
-                <div class="bubble" onclick="openCategory('Rings')" style="background-image: url('rings.jpg');"><span>Rings</span></div>
-                <div class="bubble" onclick="openCategory('Earrings')" style="background-image: url('earrings.jpg');"><span>Earrings</span></div>
-                <div class="bubble" onclick="openCategory('Phone Charms')" style="background-image: url('charms.jpg');"><span>Phone Charms</span></div>
-                <div class="bubble" onclick="openCategory('Hair Sticks')" style="background-image: url('sticks.jpg');"><span>Hair Sticks</span></div>
-                <div class="bubble" onclick="openCategory('Bookmarks')" style="background-image: url('bookmarks.jpg');"><span>Bookmarks</span></div>
-                <div class="bubble" onclick="openCategory('Bracelets')" style="background-image: url('bracelets.jpg');"><span>Bracelets</span></div>
+                <div class="bubble" onclick="openCategory('Necklaces')" style="background-image: url('Necklace.jpg');"><span>Necklaces</span></div>
+                <div class="bubble" onclick="openCategory('Rings')" style="background-image: url('Ring.jpg');"><span>Rings</span></div>
+                <div class="bubble" onclick="openCategory('Earrings')" style="background-image: url('Earring.jpg');"><span>Earrings</span></div>
+                <div class="bubble" onclick="openCategory('Phone Charms')" style="background-image: url('Charms.jpg');"><span>Phone Charms</span></div>
+                <div class="bubble" onclick="openCategory('Hair Sticks')" style="background-image: url('Hairstick.jpg');"><span>Hair Sticks</span></div>
+                <div class="bubble" onclick="openCategory('Bookmarks')" style="background-image: url('Bookmark.jpg');"><span>Bookmarks</span></div>
+                <div class="bubble" onclick="openCategory('Bracelets')" style="background-image: url('Bracelet.jpg');"><span>Bracelets</span></div>
                 
                 <div class="bubble customs-box" onclick="openCustoms()">
                     <span style="color: var(--gold);">Customs Order Box</span>
@@ -237,6 +237,24 @@
             <h2 class="page-title" id="dynamic-category-title">Category</h2>
         </div>
         <div class="product-grid">
+            <!-- ADDING A NEW ITEM BELOW -->
+<div class="product-card">
+    <div class="product-img">
+        <!-- Change 'my-new-necklace.jpg' to whatever your uploaded picture is named -->
+        <img src="my-new-necklace.jpg" alt="Jewelry">
+    </div>
+    <div class="product-info">
+        <!-- Type the title of your jewelry piece here -->
+        <h3 class="product-name">The Moonlight Necklace</h3>
+        <!-- Type the price here -->
+        <div class="product-price">₹1,200</div>
+        <div class="action-frame">
+            <button class="btn btn-gold" onclick="triggerBuyNow('The Moonlight Necklace', 1200)">Buy Now</button>
+            <button class="btn btn-outline" onclick="addToCart('The Moonlight Necklace', 1200)">Add to Cart</button>
+        </div>
+    </div>
+</div>
+<!-- END OF NEW ITEM -->
             
             <div class="product-card">
                 <div class="product-img"><img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=600" alt="Jewelry"></div>
