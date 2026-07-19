@@ -94,6 +94,10 @@
         .bubble span { position: relative; z-index: 2; font-style: italic; }
         .bubble:hover { transform: translateY(-5px); background-color: var(--gold); color: var(--dark-maroon); }
 
+        /* Full width button behavior for customs box */
+        .customs-box { grid-column: span 3; max-width: 100%; aspect-ratio: auto; border-radius: 30px; padding: 1.5rem 4rem; height: 70px; }
+        @media (max-width: 768px) { .customs-box { grid-column: span 2; } }
+
         /* --- PAGES LAYOUT --- */
         .page-view { display: none; padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; min-height: 70vh; }
         .page-header { display: flex; flex-direction: column; align-items: center; margin-bottom: 3rem; text-align: center; }
@@ -109,7 +113,6 @@
         .product-name { font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 0.5rem; }
         .product-price { color: var(--gold); font-size: 1.3rem; margin-bottom: 1.2rem; font-weight: 600; }
         
-        /* Dual Button Frame Setup */
         .action-frame { display: flex; flex-direction: column; gap: 0.5rem; }
         .btn {
             display: inline-block; padding: 0.8rem 1.5rem; text-transform: uppercase;
@@ -163,9 +166,7 @@
             <h3>Your Cart</h3>
             <button class="close-cart" onclick="toggleCart(false)">×</button>
         </div>
-        <div class="cart-items-list" id="cartItemsContainer">
-            <!-- Dynamically injected cart rows go here -->
-        </div>
+        <div class="cart-items-list" id="cartItemsContainer"></div>
         <div class="cart-footer">
             <div class="cart-total">
                 <span>Total:</span>
@@ -187,9 +188,14 @@
                 <div class="bubble" onclick="openCategory('Necklaces')" style="background-image: url('necklaces.jpg');"><span>Necklaces</span></div>
                 <div class="bubble" onclick="openCategory('Rings')" style="background-image: url('rings.jpg');"><span>Rings</span></div>
                 <div class="bubble" onclick="openCategory('Earrings')" style="background-image: url('earrings.jpg');"><span>Earrings</span></div>
-                <div class="bubble" onclick="openCategory('Phone Charms')"><span>Phone Charms</span></div>
-                <div class="bubble" onclick="openCategory('Hair Sticks')"><span>Hair Sticks</span></div>
-                <div class="bubble" onclick="openCustoms()"><span>Customs</span></div>
+                <div class="bubble" onclick="openCategory('Phone Charms')" style="background-image: url('charms.jpg');"><span>Phone Charms</span></div>
+                <div class="bubble" onclick="openCategory('Hair Sticks')" style="background-image: url('sticks.jpg');"><span>Hair Sticks</span></div>
+                <div class="bubble" onclick="openCategory('Bookmarks')" style="background-image: url('bookmarks.jpg');"><span>Bookmarks</span></div>
+                <div class="bubble" onclick="openCategory('Bracelets')" style="background-image: url('bracelets.jpg');"><span>Bracelets</span></div>
+                
+                <div class="bubble customs-box" onclick="openCustoms()">
+                    <span style="color: var(--gold);">Customs Order Box</span>
+                </div>
             </div>
         </section>
     </div>
@@ -202,7 +208,6 @@
         </div>
         <div class="product-grid">
             
-            <!-- Sample Jewelry Card Structure -->
             <div class="product-card">
                 <div class="product-img"><img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=600" alt="Jewelry"></div>
                 <div class="product-info">
@@ -218,14 +223,13 @@
         </div>
     </div>
 
-    <!-- SECURE ORDER ADDRESS DATABASE ENTRY -->
+    <!-- SECURE ORDER ADDRESS ENTRY -->
     <div id="checkout-view" class="page-view">
         <div class="page-header">
             <h2 class="page-title">Secure Checkout</h2>
             <p style="color: var(--gold); margin-top: 0.5rem;" id="checkout-items-summary"></p>
         </div>
         <div class="secure-form-frame">
-            <!-- PASTE YOUR SECURE GOOGLE FORMS LINK HERE -->
             <iframe id="orderFormFrame" src="https://docs.google.com/forms/d/e/1FAIpQLSfD5l6e_YOUR_FORM_ID_HERE/viewform?embedded=true" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0">Loading secure checkout database...</iframe>
         </div>
         <div style="text-align:center; margin-top: 2rem;">
@@ -237,7 +241,7 @@
     <div id="qr-view" class="page-view">
         <div class="page-header"><h2 class="page-title">Final Step: Payment</h2></div>
         <div class="qr-container">
-            <p>Scan to pay via any UPI application. Your order structural breakdown and tracking parameters have been locked in.</p>
+            <p>Scan to pay via any UPI application.</p>
             <div class="qr-box"><img src="my-qr-code.jpg" alt="Payment QR"></div>
             <button class="btn btn-gold" onclick="clearCartAndFinish()">Finish Order</button>
         </div>
@@ -250,16 +254,13 @@
             <h2 class="page-title">Custom Request</h2>
         </div>
         <div class="secure-form-frame">
-            <!-- PASTE YOUR PRIVATIZED CUSTOM FORM IFRAME EMBED LINK HERE -->
             <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfD5l6e_YOUR_CUSTOM_FORM_ID_HERE/viewform?embedded=true" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0">Loading form...</iframe>
         </div>
     </div>
 
     <footer>© 2026 ravynco.in | All Rights Reserved</footer>
 
-    <!-- INTERACTIVE ENGINE LOGIC -->
     <script>
-        // Store tracking fields
         let cartArray = [];
         const views = [document.getElementById('home-view'), document.getElementById('category-view'), document.getElementById('checkout-view'), document.getElementById('qr-view'), document.getElementById('customs-view')];
         const drawer = document.getElementById('cartDrawer');
@@ -269,34 +270,25 @@
         function openCategory(cat) { hideAll(); views[1].style.display = 'block'; document.getElementById('dynamic-category-title').innerText = cat; }
         function openCustoms() { hideAll(); views[4].style.display = 'block'; }
         function goToPayment() { hideAll(); views[3].style.display = 'block'; }
+        function toggleCart(openState) { if (openState) drawer.classList.add('open'); else drawer.classList.remove('open'); }
 
-        // Cart Visibility Control
-        function toggleCart(openState) {
-            if (openState) drawer.classList.add('open');
-            else drawer.classList.remove('open');
-        }
-
-        // Add item to shopping array
         function addToCart(name, price) {
             cartArray.push({ name: name, price: price });
             updateCartUI();
-            toggleCart(true); // Automatically show side panel like premium retail sites
+            toggleCart(true);
         }
 
-        // Instantly bypass cart array and checkout one item
         function triggerBuyNow(name, price) {
             document.getElementById('checkout-items-summary').innerText = `Buying: ${name} (₹${price})`;
             hideAll();
             views[2].style.display = 'block';
         }
 
-        // Remove row from shopping array
         function removeCartItem(index) {
             cartArray.splice(index, 1);
             updateCartUI();
         }
 
-        // Synchronize Interface Display States
         function updateCartUI() {
             const countEl = document.getElementById('nav-cart-count');
             const container = document.getElementById('cartItemsContainer');
@@ -304,7 +296,6 @@
             
             countEl.innerText = cartArray.length;
             container.innerHTML = "";
-            
             let currentSum = 0;
             
             if (cartArray.length === 0) {
@@ -326,25 +317,16 @@
             totalEl.innerText = "₹" + currentSum;
         }
 
-        // Handle Checkout click from inside Cart Drawer
         function openCartCheckout() {
-            if (cartArray.length === 0) {
-                alert("Your cart is empty!");
-                return;
-            }
+            if (cartArray.length === 0) { alert("Your cart is empty!"); return; }
             let summaryNames = cartArray.map(i => i.name).join(", ");
             let totalCost = cartArray.reduce((acc, current) => acc + current.price, 0);
-            
             document.getElementById('checkout-items-summary').innerText = `Cart Selection: ${summaryNames} (Total: ₹${totalCost})`;
             hideAll();
             views[2].style.display = 'block';
         }
 
-        function clearCartAndFinish() {
-            cartArray = [];
-            updateCartUI();
-            goHome();
-        }
+        function clearCartAndFinish() { cartArray = []; updateCartUI(); goHome(); }
     </script>
 </body>
 </html>
